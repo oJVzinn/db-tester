@@ -4,6 +4,7 @@ services:
     restart: no
     environment:
       MARIADB_ROOT_PASSWORD: admin
+    volumes: ["./mariadb_data:/var/lib/mysql"]
   phpmyadmin:
     image: phpmyadmin
     restart: no
@@ -11,3 +12,7 @@ services:
       - 8080:80
     environment:
       - PMA_ARBITRARY=1
+    depends_on:
+      - db
+volumes: 
+  mariadb_data:
