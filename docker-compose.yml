@@ -1,18 +1,15 @@
 services:
-  db:
-    image: mariadb
+  postgres:
+    image: postgres:16
+    container_name: postgres_db
     restart: no
     environment:
-      MARIADB_ROOT_PASSWORD: admin
-    volumes: ["./mariadb_data:/var/lib/mysql"]
-  phpmyadmin:
-    image: phpmyadmin
-    restart: no
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: database
     ports:
-      - 8080:80
-    environment:
-      - PMA_ARBITRARY=1
-    depends_on:
-      - db
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 volumes: 
-  mariadb_data:
+  postgres_data:
