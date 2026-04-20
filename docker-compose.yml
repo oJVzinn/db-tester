@@ -23,6 +23,7 @@ services:
       redis-server
       --appendonly no
       --save ""
+      --requirepass admin
 volumes: 
   postgres_data:
   redis_data:
